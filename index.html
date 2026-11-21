@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy AI Enabler — Модуль для One UI 9</title>
+    <title>Galaxy AI Enabler v1.0 — Модуль для One UI 9 (MediaTek)</title>
     <style>
         :root {
             --bg-main: #07090e;
@@ -28,12 +28,11 @@
             color: var(--text-main);
             line-height: 1.6;
         }
-        /* Навигация */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(7, 9, 14, 0.85);
+            background: rgba(7, 9, 14, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
@@ -48,16 +47,25 @@
         .logo {
             font-weight: 800;
             font-size: 18px;
+            color: #fff;
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #fff;
-            text-decoration: none;
         }
         .logo span {
             background: linear-gradient(90deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .ver-tag {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            color: #60a5fa;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
         }
         nav {
             display: flex;
@@ -68,34 +76,19 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: color 0.2s;
+            cursor: pointer;
         }
         nav a:hover {
             color: #fff;
         }
-        /* Главный экран (Hero) */
         .hero {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 80px 24px 60px;
+            padding: 70px 24px 45px;
             text-align: center;
-            position: relative;
-        }
-        .glow {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(59, 130, 246, 0) 70%);
-            pointer-events: none;
-            z-index: -1;
         }
         .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-block;
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid rgba(139, 92, 246, 0.4);
             color: #c4b5fd;
@@ -103,14 +96,13 @@
             border-radius: 99px;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         h1 {
-            font-size: clamp(36px, 6vw, 56px);
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
             line-height: 1.15;
-            margin: 0 0 20px;
-            letter-spacing: -0.02em;
+            margin: 0 0 18px;
         }
         h1 span {
             background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
@@ -119,13 +111,13 @@
         }
         .hero p {
             max-width: 640px;
-            margin: 0 auto 36px;
+            margin: 0 auto 32px;
             color: var(--text-muted);
-            font-size: 18px;
+            font-size: 17px;
         }
         .cta-group {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -137,57 +129,81 @@
             border-radius: 14px;
             font-weight: 600;
             font-size: 16px;
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 35px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 14px 30px rgba(124, 58, 237, 0.5);
         }
         .btn-secondary {
             background: var(--bg-card);
             border: 1px solid var(--border);
             color: #fff;
             text-decoration: none;
-            padding: 16px 28px;
+            padding: 16px 26px;
             border-radius: 14px;
             font-weight: 600;
             font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
             transition: background 0.2s;
         }
         .btn-secondary:hover {
             background: var(--bg-card-hover);
         }
-        /* Секции */
+        .release-meta {
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .release-meta code {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
         section {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 50px 24px;
+            padding: 45px 24px;
         }
         .section-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
-            margin: 0 0 12px;
+            margin: 0 0 10px;
         }
         .section-desc {
             color: var(--text-muted);
-            margin: 0 0 32px;
+            margin: 0 0 28px;
         }
-        /* Требования (4 карточки) */
         .req-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
         }
         .req-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
+            border-radius: 18px;
+            padding: 22px;
         }
         .req-card .icon {
-            font-size: 26px;
-            margin-bottom: 12px;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
         .req-card h3 {
             margin: 0 0 6px;
@@ -206,54 +222,24 @@
             padding: 16px 20px;
             color: #fca5a5;
             font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
         }
-        /* Возможности */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 28px;
-            transition: border-color 0.2s;
-        }
-        .feature-card:hover {
-            border-color: #3b496b;
-        }
-        .feature-card h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
-            color: #fff;
-        }
-        .feature-card p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-        /* Установка */
         .steps {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
         .step {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 20px 24px;
+            border-radius: 16px;
+            padding: 18px 22px;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
         }
         .step-num {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 10px;
             background: rgba(59, 130, 246, 0.15);
             color: #60a5fa;
@@ -263,46 +249,29 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        /* FAQ */
         details {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 18px 22px;
+            padding: 16px 20px;
             margin-bottom: 12px;
         }
         summary {
             font-weight: 600;
             cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::-webkit-details-marker {
-            display: none;
-        }
-        summary::after {
-            content: "+";
-            font-size: 20px;
-            color: var(--text-muted);
-        }
-        details[open] summary::after {
-            content: "−";
         }
         details p {
             margin: 12px 0 0;
             color: var(--text-muted);
             font-size: 14px;
         }
-        /* Подвал */
         footer {
             border-top: 1px solid var(--border);
-            padding: 40px 24px;
+            padding: 36px 24px;
             text-align: center;
             color: var(--text-muted);
             font-size: 13px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         @media (max-width: 640px) {
             nav { display: none; }
@@ -313,10 +282,9 @@
 
 <header>
     <div class="nav-container">
-        <a href="#" class="logo">✦ <span>Galaxy AI</span> Enabler</a>
+        <a href="#" class="logo">✦ <span>Galaxy AI</span> Enabler <span class="ver-tag">v1.0</span></a>
         <nav>
             <a href="#requirements">Требования</a>
-            <a href="#features">Функции</a>
             <a href="#install">Установка</a>
             <a href="#faq">Вопросы</a>
         </nav>
@@ -324,14 +292,33 @@
 </header>
 
 <div class="hero">
-    <div class="glow"></div>
-    <div class="pill">✦ Эксклюзивно для Samsung One UI 9</div>
+    <div class="pill">✦ Samsung One UI 9 • MediaTek</div>
     <h1>Активируйте <span>Galaxy AI</span> на вашем Samsung</h1>
-    <p>Системный Root-модуль для разблокировки функций искусственного интеллекта Samsung без модификации системного раздела.</p>
+    <p>Root-модуль для разблокировки функций искусственного интеллекта Samsung на устройствах с процессорами MediaTek без изменения раздела /system.</p>
     <div class="cta-group">
-        <a href="https://github.com" class="btn-primary">📥 Скачать модуль (.zip)</a>
-        <a href="https://github.com" class="btn-secondary">Исходный код на GitHub</a>
+        <a href="https://github.com" class="btn-primary">📥 Скачать модуль (788 МБ)</a>
+        <a href="https://github.com" target="_blank" class="btn-secondary">Страница релиза v1.0</a>
+    </div>
+    <div class="release-meta">
+        <span>Файл: <code>AI.FOR.GALAXY.ENHANCED.1.zip</code></span>
+        <span>•</span>
+        <span>Версия: <b>v1.0</b></span>
+        <span>•</span>
+        <span>Размер: <b>788 МБ</b></span>
     </div>
 </div>
 
 <section id="requirements">
+    <h2 class="section-title">Системные требования</h2>
+    <p class="section-desc">Модуль работает только при соблюдении всех условий ниже.</p>
+    <div class="req-grid">
+        <div class="req-card">
+            <div class="icon">📱</div>
+            <h3>Только Samsung</h3>
+            <p>Исключительно смартфоны и планшеты Samsung Galaxy.</p>
+        </div>
+        <div class="req-card">
+            <div class="icon">⚙️</div>
+            <h3>Прошивка One UI 9</h3>
+            <p>Поддерживается только оболочка One UI 9.</p>
+        </div>
