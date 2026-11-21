@@ -1,0 +1,8 @@
+id=ProOneUI
+name=Galaxy AI for OneUI 9 using MediaTek chipset
+version=1.2
+versionCode=13
+author=@andrewtuff
+description=Enable Galaxy AI on Samsung using MTK chipset / bug can't set wallpaper through gallery ( set clock normal )
+mount_engine=magic
+mount_paths=system/app,system/priv-app,system/etc,system/lib64,system/saiv,system/app/SketchBook,system/app/MhsAiService,system/app/VisionModel-Stub,system/app/VisualCloudCore,system/priv-app/SamsungAiCore,system/priv-app/SamsungSmartSuggestions,system/priv-app/PhotoEditor_Full,system/priv-app/MediaSearch,system/priv-app/OfflineLanguageModel_stub,system/priv-app/PetService,system/priv-app/SemanticSearchCore,system/priv-app/SpriteWallpaper,system/priv-app/TasManager,system/priv-app/BixbyInterpreter,system/priv-app/HWResourceShare,system/

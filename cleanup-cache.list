@@ -1,0 +1,19 @@
+# A36 Flagship - cleanup cache directories
+# One APK directory per line (as found in /data/system/package_cache/)
+
+SamsungAiCore
+MhsAiService
+SketchBook
+VisionModel-Stub
+VisualCloudCore
+BixbyInterpreter
+HWResourceShare
+MediaSearch
+OfflineLanguageModel_stub
+PetService
+PhotoEditor_Full
+SamsungSmartSuggestions
+SemanticSearchCore
+SpriteWallpaper
+TasManager
+wallpaper-res

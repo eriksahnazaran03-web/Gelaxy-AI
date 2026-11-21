@@ -1,0 +1,26 @@
+# A36 Flagship - cleanup packages
+# Mode: stock = restore stock app, port = remove ported app
+# Format: MODE PACKAGE_NAME
+
+# Galaxy AI port packages
+port com.samsung.android.aicore
+port com.samsung.android.mhs.ai
+port com.samsung.android.smartsuggestions
+port com.samsung.android.app.sketchbook
+port com.samsung.android.vision.model
+port com.samsung.android.hwresourceshare
+port com.samsung.mediasearch
+port com.samsung.android.offline.languagemodel
+port com.samsung.petservice
+port com.samsung.android.app.interpreter
+port com.samsung.android.hwresourceshare.storage
+port com.sec.tasmanager
+port com.samsung.android.visual.cloudcore
+
+# Stock apps that are replaced
+stock com.samsung.android.visual.cloudcore
+stock com.sec.android.mimage.photoretouching
+stock com.samsung.android.smartsuggestions
+stock com.samsung.android.wallpaper.live
+stock com.sec.tasmanager
+stock com.samsung.android.wallpaper.res
