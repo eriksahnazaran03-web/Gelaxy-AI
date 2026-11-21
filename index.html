@@ -3,116 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy AI Enabler — One UI 9</title>
+    <title>Galaxy AI Enabler — Модуль для One UI 9</title>
     <style>
+        :root {
+            --bg-main: #07090e;
+            --bg-card: #111520;
+            --bg-card-hover: #171d2c;
+            --border: #1f273a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --danger: #ef4444;
+        }
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0b0d13;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        /* Навигация */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 16px 24px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
         }
-        .container {
-            max-width: 600px;
-            width: 90%;
-            background: #161b26;
-            border-radius: 28px;
-            padding: 36px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            border: 1px solid #262e40;
-            text-align: center;
+        .logo {
+            font-weight: 800;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
         }
-        .badge {
-            display: inline-block;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-        h1 {
-            font-size: 32px;
-            margin: 0 0 12px 0;
-            background: linear-gradient(90deg, #ffffff, #a5b4fc);
+        .logo span {
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        p.subtitle {
-            color: #94a3b8;
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 28px;
+        nav {
+            display: flex;
+            gap: 24px;
         }
-        .req-box {
-            background: #0f131a;
-            border-radius: 18px;
-            padding: 20px;
-            text-align: left;
-            margin-bottom: 28px;
-            border: 1px solid #1e2533;
-        }
-        .req-box h3 {
-            margin: 0 0 12px 0;
-            font-size: 16px;
-            color: #f87171;
-        }
-        .req-box ul {
-            margin: 0;
-            padding-left: 20px;
-            color: #cbd5e1;
-            line-height: 1.7;
-        }
-        .btn-download {
-            display: inline-block;
-            background: linear-gradient(90deg, #2563eb, #7c3aed);
-            color: #ffffff;
+        nav a {
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        /* Главный экран (Hero) */
+        .hero {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+            text-align: center;
+            position: relative;
+        }
+        .glow {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(59, 130, 246, 0) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #c4b5fd;
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 0 0 20px;
+            letter-spacing: -0.02em;
+        }
+        h1 span {
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            max-width: 640px;
+            margin: 0 auto 36px;
+            color: var(--text-muted);
             font-size: 18px;
-            padding: 16px 36px;
-            border-radius: 50px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
         }
-        .btn-download:hover {
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(124, 58, 237, 0.6);
+            box-shadow: 0 14px 35px rgba(124, 58, 237, 0.5);
         }
-        .footer {
-            margin-top: 24px;
-            font-size: 12px;
-            color: #64748b;
+        .btn-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+        }
+        /* Секции */
+        section {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 12px;
+        }
+        .section-desc {
+            color: var(--text-muted);
+            margin: 0 0 32px;
+        }
+        /* Требования (4 карточки) */
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .req-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        .req-card .icon {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+        .req-card h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+        }
+        .req-card p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .warning-banner {
+            margin-top: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 16px 20px;
+            color: #fca5a5;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        /* Возможности */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 28px;
+            transition: border-color 0.2s;
+        }
+        .feature-card:hover {
+            border-color: #3b496b;
+        }
+        .feature-card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+        .feature-card p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        /* Установка */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        /* FAQ */
+        details {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 12px;
+        }
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::after {
+            content: "+";
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+        details[open] summary::after {
+            content: "−";
+        }
+        details p {
+            margin: 12px 0 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        /* Подвал */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 40px;
+        }
+        @media (max-width: 640px) {
+            nav { display: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="badge">✨ One UI 9 Exclusive</div>
-    <h1>Galaxy AI Enabler</h1>
-    <p class="subtitle">Модуль для разблокировки и активации встроенных функций искусственного интеллекта Galaxy AI на устройствах Samsung.</p>
-    
-    <div class="req-box">
-        <h3>⚠️ Строгие требования:</h3>
-        <ul>
-            <li><b>Устройство:</b> Только смартфоны и планшеты Samsung</li>
-            <li><b>Система:</b> Исключительно прошивка <b>One UI 9</b></li>
-            <li><b>Права:</b> Обязательно наличие <b>Root</b></li>
-            <li><b>Менеджер:</b> Только <b>KernelSU</b> или <b>Magisk</b></li>
-        </ul>
+<header>
+    <div class="nav-container">
+        <a href="#" class="logo">✦ <span>Galaxy AI</span> Enabler</a>
+        <nav>
+            <a href="#requirements">Требования</a>
+            <a href="#features">Функции</a>
+            <a href="#install">Установка</a>
+            <a href="#faq">Вопросы</a>
+        </nav>
     </div>
+</header>
 
-    <a href="https://github.com" class="btn-download">📥 Скачать модуль (.zip)</a>
-
-    <div class="footer">
-        Установка выполняется на ваш страх и риск. Автор не несет ответственности за bootloop или срабатывание Knox.
+<div class="hero">
+    <div class="glow"></div>
+    <div class="pill">✦ Эксклюзивно для Samsung One UI 9</div>
+    <h1>Активируйте <span>Galaxy AI</span> на вашем Samsung</h1>
+    <p>Системный Root-модуль для разблокировки функций искусственного интеллекта Samsung без модификации системного раздела.</p>
+    <div class="cta-group">
+        <a href="https://github.com" class="btn-primary">📥 Скачать модуль (.zip)</a>
+        <a href="https://github.com" class="btn-secondary">Исходный код на GitHub</a>
     </div>
 </div>
 
-</body>
-</html>
+<section id="requirements">
