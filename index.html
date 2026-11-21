@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy AI Enabler v1.0 — Модуль для One UI 9 (MediaTek)</title>
+    <title>Galaxy AI Enabler — Модуль для One UI 9 (MediaTek)</title>
     <style>
         :root {
             --bg-main: #07090e;
@@ -57,15 +57,6 @@
             background: linear-gradient(90deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .ver-tag {
-            background: rgba(59, 130, 246, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.35);
-            color: #60a5fa;
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: 600;
         }
         nav {
             display: flex;
@@ -155,26 +146,6 @@
         }
         .btn-secondary:hover {
             background: var(--bg-card-hover);
-        }
-        .release-meta {
-            margin-top: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 8px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .release-meta code {
-            color: #e2e8f0;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2px 6px;
-            border-radius: 5px;
         }
         section {
             max-width: 1040px;
@@ -282,7 +253,7 @@
 
 <header>
     <div class="nav-container">
-        <a href="#" class="logo">✦ <span>Galaxy AI</span> Enabler <span class="ver-tag">v1.0</span></a>
+        <a href="#" class="logo">✦ <span>Galaxy AI</span> Enabler</a>
         <nav>
             <a href="#requirements">Требования</a>
             <a href="#install">Установка</a>
@@ -296,15 +267,8 @@
     <h1>Активируйте <span>Galaxy AI</span> на вашем Samsung</h1>
     <p>Root-модуль для разблокировки функций искусственного интеллекта Samsung на устройствах с процессорами MediaTek без изменения раздела /system.</p>
     <div class="cta-group">
-        <a href="https://github.com" class="btn-primary">📥 Скачать модуль (788 МБ)</a>
-        <a href="https://github.com" target="_blank" class="btn-secondary">Страница релиза v1.0</a>
-    </div>
-    <div class="release-meta">
-        <span>Файл: <code>AI.FOR.GALAXY.ENHANCED.1.zip</code></span>
-        <span>•</span>
-        <span>Версия: <b>v1.0</b></span>
-        <span>•</span>
-        <span>Размер: <b>788 МБ</b></span>
+        <a href="https://github.com" target="_blank" class="btn-primary">📥 Скачать модуль (.zip)</a>
+        <a href="https://github.com" target="_blank" class="btn-secondary">Репозиторий на GitHub</a>
     </div>
 </div>
 
@@ -322,3 +286,32 @@
             <h3>Прошивка One UI 9</h3>
             <p>Поддерживается только оболочка One UI 9.</p>
         </div>
+        <div class="req-card">
+            <div class="icon">🔲</div>
+            <h3>Чип MediaTek</h3>
+            <p>Оптимизировано для устройств Samsung на базе процессоров MediaTek.</p>
+        </div>
+        <div class="req-card">
+            <div class="icon">🔓</div>
+            <h3>Root (Magisk / KernelSU)</h3>
+            <p>Обязательны Root-права и менеджер Magisk или KernelSU.</p>
+        </div>
+    </div>
+    <div class="warning-banner">
+        ⚠️ <b>Внимание:</b> Установка на другие бренды, процессоры или старые версии One UI может привести к циклической перезагрузке (bootloop).
+    </div>
+</section>
+
+<section id="install">
+    <h2 class="section-title">Инструкция по установке</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div>Нажмите кнопку <b>«Скачать модуль»</b> выше, чтобы перейти в раздел релизов и загрузить <code>.zip</code> архив.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div>Откройте приложение <b>Magisk</b> или <b>KernelSU</b>.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
